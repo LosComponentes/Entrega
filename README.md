@@ -6,3 +6,4 @@
 - Ana Sofía Padilla Daza, 202021748, aspd-2501
 - Ever
 - Eduar
+- Valeria Caro Ramirez, 20, 
