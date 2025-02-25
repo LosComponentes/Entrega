@@ -43,6 +43,10 @@ El directorio infraestructura/schema/ define los esquemas de eventos y comandos.
 En el seedwork, los archivos comandos.py y queries.py proporcionan una base estándar para manejar comandos y consultas en el sistema. Esto garantiza coherencia en la lógica de negocio.
 
 
+## Video
+
+[Video](https://uniandes-my.sharepoint.com/:v:/g/personal/m_estradag_uniandes_edu_co/ESe8Sk8jrXdKiHhW0nMQyqIBOTfF5pD1PBrWsawZXCB05Q?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=2Tkd8F )
+
 ## Saludtech
 ### Ejecutar Aplicación
 
