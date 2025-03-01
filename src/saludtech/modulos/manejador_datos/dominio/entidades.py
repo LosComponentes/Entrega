@@ -16,8 +16,7 @@ class Imagen(AgregacionRaiz):
     def __str__(self) -> str:
         return f"Imagen {self.token_unico}" 
 
-    def crear_imagen(self, imagen: Imagen) -> dict:
-        
+    def crear_imagen(self, imagen: Imagen) -> dict:  
         self.token = imagen.token
         self.modalidad  = imagen.modalidad
         self.region_anatomica = imagen.region_anatomica
@@ -29,8 +28,6 @@ class Imagen(AgregacionRaiz):
 @dataclass
 class Condicion(Entidad):
     tipo_condicion: list[ov.TipoCondicion] = field(default_factory=list[ov.TipoCondicion])
-
-
 
 @dataclass
 class Metadata(Entidad):

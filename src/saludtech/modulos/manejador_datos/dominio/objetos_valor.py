@@ -10,7 +10,7 @@ from enum import Enum
 
 @dataclass(frozen=True)
 class Modalidad:
-    tipo: str  
+    tipo: str
 
 @dataclass(frozen=True)
 class RegionAnatomica:
@@ -36,7 +36,7 @@ class ContextoProcesal:
 class Sintoma:
     descripcion: str  
 
-class TipoImagen(Enum):
+class ModalidadImagen(Enum):
     RX = "Rayos X"
     TOMOGRAFIA = "Tomografía"
     RM = "Resonancia Magnética"
@@ -47,7 +47,7 @@ class TipoImagen(Enum):
     HISPATOLOGIA = "Hispatología"
     OTROS = "OTROS"
 
-class TipoCuerpo(Enum):
+class RegionCuerpo(Enum):
     CABEZA_CUELLO = "Cabeza y Cuello"
     TORAX = "Toráx"
     ABDOMEN = "Abadomen"
