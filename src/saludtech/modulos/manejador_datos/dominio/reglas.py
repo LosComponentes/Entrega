@@ -4,7 +4,7 @@ Reglas de negocio del dominio de imágenes médicas
 En este archivo usted encontrará reglas de negocio del dominio de imágenes médicas.
 """
 from saludtech.seedwork.dominio.reglas import ReglaNegocio
-from .objetos_valor import TokenUnico, Modalidad, TipoImagen
+from .objetos_valor import Token, Modalidad, ModalidadImagen, RegionCuerpo
 
 
 class ImagenDebeTenerToken(ReglaNegocio):
@@ -30,7 +30,7 @@ class ModalidadValida(ReglaNegocio):
         self.modalidad = modalidad
 
     def es_valido(self) -> bool:
-        return self.modalidad.tipo in [tipo.value for tipo in TipoImagen]
+        return self.modalidad.tipo in [tipo.value for tipo in ModalidadImagen]
 
 class RegionAnatomicaValida(ReglaNegocio):
     #Regla que valida si la region anatomica de la imagen es reconocida.
@@ -42,4 +42,4 @@ class RegionAnatomicaValida(ReglaNegocio):
         self.regionAnatomica = regionAnatomica
 
     def es_valido(self) -> bool:
-        return self.regionAnatomica.tipo in [tipo.value for tipo in TipoCuerpo]
+        return self.regionAnatomica.tipo in [tipo.value for tipo in RegionCuerpo]

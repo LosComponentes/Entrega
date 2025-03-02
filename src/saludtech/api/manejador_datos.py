@@ -1,7 +1,14 @@
+import saludtech.seedwork.presentacion.api as api
+import json
+from saludtech.modulos.manejador_datos.aplicacion.servicios import ServicioImagen
+from saludtech.modulos.manejador_datos.aplicacion.dto import ImagenDTO
+from saludtech.seedwork.dominio.excepciones import ExcepcionDominio
+
+
 from flask import redirect,render_template,request,session
 from flask import Response
-import saludtech.seedwork.presentacion.api as api
 from saludtech.modulos.manejador_datos.aplicacion.mapeadores import MapeadorImagenDTOJson
+
 bp = api.crear_blueprint('manejador_datos', '/manejador_datos')
 
 @bp.route('/imagen', methods=('POST',))
@@ -22,8 +29,8 @@ def agregar_imagen():
 @bp.route('/imagen/<id>', methods=('GET',))
 def dar_imagen(id=None):
     if id:
-        sr = ServicioReserva()
+        sr = ServicioImagen()
         
-        return sr.obtener_imagen_por_id(id)
+        return sr.o(id)
     else:
         return [{'message': 'GET!'}]

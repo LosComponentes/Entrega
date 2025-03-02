@@ -1,8 +1,8 @@
-from aeroalpes.seedwork.aplicacion.servicios import Servicio
-from aeroalpes.modulos.manejador_datos.dominio.entidades import Imagen
-from aeroalpes.modulos.manejador_datos.dominio.fabricas import FabricaImagenes
-from aeroalpes.modulos.manejador_datos.infraestructura.fabricas import FabricaRepositorio
-from aeroalpes.modulos.manejador_datos.infraestructura.repositorios import RepositorioImagenes
+from saludtech.seedwork.aplicacion.servicios import Servicio
+from saludtech.modulos.manejador_datos.dominio.entidades import Imagen
+from saludtech.modulos.manejador_datos.dominio.fabricas import FabricaImagenes
+from saludtech.modulos.manejador_datos.infraestructura.fabricas import FabricaRepositorio
+from saludtech.modulos.manejador_datos.infraestructura.repositorios import RepositorioImagenes
 from .mapeadores import MapeadorImagen
 
 from .dto import ImagenDTO
@@ -14,11 +14,11 @@ class ServicioImagen(Servicio):
 
     @property
     def fabrica_repositorio(self):
-        return self._fabrica_imagenes
+        return self._fabrica_repositorio
     
     @property
     def fabrica_imagenes(self):
-        return self._fabrica_vuelos
+        return self._fabrica_imagenes
 
     def crear_imagen(self, imagen_dto: ImagenDTO) -> ImagenDTO:
         imagen: Imagen = self.fabrica_imagenes.crear_objeto(imagen_dto, MapeadorImagen())
