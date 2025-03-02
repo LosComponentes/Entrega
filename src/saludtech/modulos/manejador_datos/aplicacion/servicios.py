@@ -28,6 +28,6 @@ class ServicioImagen(Servicio):
 
         return self.fabrica_imagenes.crear_objeto(imagen, MapeadorImagen())
 
-    def obtener_imagen_por_id(self, id) -> ReservaDTO:
+    def obtener_imagen_por_id(self, id) -> ImagenDTO:
         repositorio = self.fabrica_repositorio.crear_objeto(RepositorioImagenes.__class__)
         return repositorio.obtener_por_id(id).__dict__

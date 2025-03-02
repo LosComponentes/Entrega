@@ -9,77 +9,91 @@ from saludtech.seedwork.dominio.repositorios import Mapeador
 from saludtech.modulos.manejador_datos.dominio.objetos_valor import Modalidad,RegionAnatomica,Token,TipoCondicion,EntornoClinico,ContextoProcesal,Sintoma,ModalidadImagen,RegionCuerpo
 from saludtech.modulos.manejador_datos.dominio.entidades import Imagen,Condicion,Metadata
 from .dto import Imagen as ImagenDTO
+from .dto import Condicion as CondicionDTO
 
 class MapeadorImagen(Mapeador):
     _FORMATO_FECHA = '%Y-%m-%dT%H:%M:%SZ'
 
-    def _procesar_itinerario_dto(self, itinerarios_dto: list) -> list[Itinerario]:
-        itin_dict = dict()
+    def _procesar_imagen_dto(self, imagen_dto: list) -> list[Imagen]:  
+        objs_imagenes: list()
+
+        for imagen in imagen_dto:
+           obj_imagen: Imagen = self._procesar_imagen(imagen) 
+           objs_imagenes.append(obj_imagen)
+        #     obj_imagen.token = imagen.token
+        #     obj_imagen.modalidad = imagen.modalidad
+        #     obj_imagen.region_anatomica = imagen.region_anatomica
+            
+        #     obj_imagen.condiciones = list()
+        #     for condicion in imagen.condiciones:
+        #         obj_imagen.condiciones.append(condicion.tipo_condicion)
+
+        #     obj_imagen.metadata = {}
+        #     obj_imagen.metadata.entorno_clinico = imagen.metadata.entorno_clinico
+        #     obj_imagen.metadata.contexto_procesal = imagen.metadata.contexto_procesal
+
+        #     obj_imagen.metadata.sintomas = list()
+        #     for sintoma in imagen.metadata.sintomas:
+        #         obj_imagen.metadata.sintomas.append(sintoma)
+
+        return objs_imagenes
+
+    def _procesar_imagen(self, imagen: any) -> ImagenDTO:
+        imagen_dto = ImagenDTO()
+        obj_imagen.token = imagen.token
+        imagen_dto.modalidad = imagen.modalidad
+        imagen_dto.region_anatomica = imagen.region_anatomica
         
-        for itin in itinerarios_dto:
-            destino = Aeropuerto(codigo=itin.destino_codigo, nombre=None)
-            origen = Aeropuerto(codigo=itin.origen_codigo, nombre=None)
-            fecha_salida = itin.fecha_salida
-            fecha_llegada = itin.fecha_llegada
+        imagen_dto.condiciones = list()
+        imagen_dto.condiciones = self._procesar_condiciones(imagen.condiciones)
+        
+        # for condicion in imagen.condiciones:
+        #     imagen_dto.condiciones.append(condicion.tipo_condicion)
 
-            itin_dict.setdefault(str(itin.odo_orden),{}).setdefault(str(itin.segmento_orden), {}).setdefault(str(itin.leg_orden), Leg(fecha_salida, fecha_llegada, origen, destino))
+        imagen_dto.metadata = {}
+        imagen_dto.metadata.entorno_clinico = imagen.metadata.entorno_clinico
+        imagen_dto.metadata.contexto_procesal = imagen.metadata.contexto_procesal
 
-        odos = list()
-        for k, odos_dict in itin_dict.items():
-            segmentos = list()
-            for k, seg_dict in odos_dict.items():
-                legs = list()
-                for k, leg in seg_dict.items():
-                    legs.append(leg)
-                segmentos.append(Segmento(legs))
-            odos.append(Odo(segmentos))
+        imagen_dto.metadata.sintomas = list()
+        for sintoma in imagen.metadata.sintomas:
+            imagen_dto.metadata.sintomas.append(sintoma)
 
-        return [Itinerario(odos)]
+        return imagen_dto
 
-    def _procesar_itinerario(self, itinerario: any) -> list[ItinerarioDTO]:
-        itinerarios_dto = list()
+    def _procesar_condiciones(self, condiciones: any) -> list[Condicion]:
+        condiciones_dto = list()
+        
+        for condicion in condiciones:
+            condiciones_dto.append(condicion)
 
-        for i, odo in enumerate(itinerario.odos):
-            for j, seg in enumerate(odo.segmentos):
-                for k, leg in enumerate(seg.legs):
-                    itinerario_dto = ItinerarioDTO()
-                    itinerario_dto.destino_codigo = leg.destino.codigo
-                    itinerario_dto.origen_codigo = leg.origen.codigo
-                    itinerario_dto.fecha_salida = leg.fecha_salida
-                    itinerario_dto.fecha_llegada = leg.fecha_llegada
-                    itinerario_dto.leg_orden = k
-                    itinerario_dto.segmento_orden = j
-                    itinerario_dto.odo_orden = i
+        return condiciones_dto
 
-                    itinerarios_dto.append(itinerario_dto)
-
-        return itinerarios_dto
 
     def obtener_tipo(self) -> type:
-        return Reserva.__class__
+        return Imagen.__class__
 
-    def entidad_a_dto(self, entidad: Reserva) -> ReservaDTO:
+    def entidad_a_dto(self, entidad: Imagen) -> ImagenDTO:
         
-        reserva_dto = ReservaDTO()
-        reserva_dto.fecha_creacion = entidad.fecha_creacion
-        reserva_dto.fecha_actualizacion = entidad.fecha_actualizacion
-        reserva_dto.id = str(entidad.id)
+        imagen_dto = ImagenDTO()
+        imagen_dto.fecha_creacion = entidad.fecha_creacion
+        imagen_dto.fecha_actualizacion = entidad.fecha_actualizacion
+        imagen_dto.id = str(entidad.id)
 
-        itinerarios_dto = list()
+        condiciones_dto = list()
         
-        for itinerario in entidad.itinerarios:
-            itinerarios_dto.extend(self._procesar_itinerario(itinerario))
+        for condicion in entidad.condiciones:
+            condiciones_dto.extend(self._procesar_condiciones(condicion))
 
-        reserva_dto.itinerarios = itinerarios_dto
+        imagen_dto.condiciones = condiciones_dto
 
-        return reserva_dto
+        return imagen_dto
 
-    def dto_a_entidad(self, dto: ReservaDTO) -> Reserva:
-        reserva = Reserva(dto.id, dto.fecha_creacion, dto.fecha_actualizacion)
-        reserva.itinerarios = list()
+    def dto_a_entidad(self, dto: ImagenDTO) -> Imagen:
+        imagen = Imagen(dto.id, dto.fecha_creacion, dto.fecha_actualizacion)
+        imagen.condiciones = list()
 
-        itinerarios_dto: list[ItinerarioDTO] = dto.itinerarios
+        condiciones_dto: list[CondicionDTO] = dto.condiciones
 
-        reserva.itinerarios.extend(self._procesar_itinerario_dto(itinerarios_dto))
+        imagen.condiciones.extend(self._procesar_condiciones(condiciones_dto))
         
-        return reserva
+        return imagen

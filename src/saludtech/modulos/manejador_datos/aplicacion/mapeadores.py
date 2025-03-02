@@ -54,7 +54,7 @@ class MapeadorImagen(RepMap):
         imagen.condiciones = condiciones
 
         metadata = list()
-        for metadato_dto in imagen_dto.Metadata:
+        for metadato_dto in imagen_dto.metadata:
             metadata.entorno_clinico = metadato_dto.entorno_clinico
             metadata.entorno_clinico = metadato_dto.contexto_procesal
             
