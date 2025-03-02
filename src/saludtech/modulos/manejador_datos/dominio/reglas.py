@@ -4,7 +4,7 @@ Reglas de negocio del dominio de imágenes médicas
 En este archivo usted encontrará reglas de negocio del dominio de imágenes médicas.
 """
 from saludtech.seedwork.dominio.reglas import ReglaNegocio
-from .objetos_valor import Token, Modalidad, ModalidadImagen, RegionCuerpo
+from .objetos_valor import Token, Modalidad, ModalidadImagen, RegionCuerpo, RegionAnatomica
 
 
 class ImagenDebeTenerToken(ReglaNegocio):

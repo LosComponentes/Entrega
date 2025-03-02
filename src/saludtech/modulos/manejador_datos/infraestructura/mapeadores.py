@@ -6,7 +6,7 @@ encargados de la transformación entre formatos de dominio y DTOs
 """
 
 from saludtech.seedwork.dominio.repositorios import Mapeador
-from saludtech.modulos.manejador_datos.dominio.objetos_valor import Modalidad,RegionAnatomica,Token,TipoCondicion,EntornoClinico,ContextoProcesal,Sintoma,TipoImagen,TipoCuerpo
+from saludtech.modulos.manejador_datos.dominio.objetos_valor import Modalidad,RegionAnatomica,Token,TipoCondicion,EntornoClinico,ContextoProcesal,Sintoma,ModalidadImagen,RegionCuerpo
 from saludtech.modulos.manejador_datos.dominio.entidades import Imagen,Condicion,Metadata
 from .dto import Imagen as ImagenDTO
 
