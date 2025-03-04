@@ -11,6 +11,17 @@
 
 Para la entrega 4 no vamso a tener enlace de wiki sino todo se va a escribir en este readme. 
 
+## Video
+
+
+
+## Microservicios
+
+- Imagen
+- Metadata
+- Anonimización
+- Script
+
 ## Escenario de prueba 
 
 ### Escenario 1: Seguridad - Anonimización de los datos en Data Partneship 
