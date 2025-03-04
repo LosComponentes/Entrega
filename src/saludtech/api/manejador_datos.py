@@ -30,7 +30,7 @@ def agregar_imagen():
 def dar_imagen(id=None):
     if id:
         sr = ServicioImagen()
-        
-        return sr.o(id)
-    else:
         return [{'message': 'GET!'}]
+        # return sr.obtener_imagen_por_id(id)
+    else:
+        return [{'message': 'GET ALL!'}]

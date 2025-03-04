@@ -30,4 +30,10 @@ class ServicioImagen(Servicio):
 
     def obtener_imagen_por_id(self, id) -> ImagenDTO:
         repositorio = self.fabrica_repositorio.crear_objeto(RepositorioImagenes.__class__)
+
+        imagen = repositorio.obtener_por_id(id)
+
+        if imagen is None:
+            return '', 404
+
         return repositorio.obtener_por_id(id).__dict__

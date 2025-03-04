@@ -24,7 +24,13 @@ class RepositorioImagenesSQLite(RepositorioImagenes):
         return self._fabrica_imagenes
 
     def obtener_por_id(self, id: UUID) -> Imagen:
-        imagen_dto = db.session.query(ImagenDTO).filter_by(id=str(id)).one()
+        imagen_dto = db.session.query(ImagenDTO).filter_by(id=str(id)).first()
+
+        print(imagen_dto)
+        
+        if imagen_dto is None:
+            return '', 404
+
         return self.fabrica_iamagenes.crear_objeto(imagen_dto, MapeadorImagen())
 
     def obtener_todos(self) -> list[Imagen]:
