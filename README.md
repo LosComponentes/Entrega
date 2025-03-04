@@ -47,6 +47,11 @@ Para la entrega 4 no vamso a tener enlace de wiki sino todo se va a escribir en 
 
 ### Justificación implementación
 
+Se implementaron los microservicios anteriormente descritos basandose en este diagrama:
+
+![Diagrama entrega 4](https://github.com/user-attachments/assets/017645e6-2a90-4b77-b9e9-a8559b14dff1)
+
+
 # Entrega 3
 
 ## Wiki
