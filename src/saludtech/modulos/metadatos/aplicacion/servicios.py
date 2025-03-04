@@ -2,8 +2,6 @@ from saludtech.seedwork.aplicacion.servicios import Servicio
 from saludtech.modulos.metadatos.dominio.entidades import Metadatos
 from saludtech.modulos.metadatos.dominio.fabricas import FabricaMetadatos
 from saludtech.modulos.metadatos.infraestructura.fabricas import FabricaRepositorio
-from saludtech.modulos.metadatos.infraestructura.repositorios import RepositorioImagenes
-from .mapeadores import MapeadorImagen
 from .dto import ImagenDTO
 
 
