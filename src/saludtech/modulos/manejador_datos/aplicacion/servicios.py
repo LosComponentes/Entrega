@@ -21,11 +21,13 @@ class ServicioImagen(Servicio):
         return self._fabrica_imagenes
 
     def crear_imagen(self, imagen_dto: ImagenDTO) -> ImagenDTO:
+        print('crear_imagen')
         imagen: Imagen = self.fabrica_imagenes.crear_objeto(imagen_dto, MapeadorImagen())
-
+        print('fabrica_imagenes.crear_objeto')
         repositorio = self.fabrica_repositorio.crear_objeto(RepositorioImagenes.__class__)
+        print('fabrica_repositorio.crear_objeto')
         repositorio.agregar(imagen)
-
+        print('repositorio.agregar')
         return self.fabrica_imagenes.crear_objeto(imagen, MapeadorImagen())
 
     def obtener_imagen_por_id(self, id) -> ImagenDTO:

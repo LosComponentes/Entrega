@@ -27,5 +27,5 @@ class ImagenDTO(DTO):
     modalidad: str = field(default_factory=str)
     region_anatomica: str = field(default_factory=str)
     token: str = field(default_factory=str)
-    condiciones: list[CondicionDTO] = field(default_factory=list)
-    metadata: MetadatoDTO = field(default_factory=MetadatoDTO)
+    condiciones: list[TipoCondicionDTO] = field(default_factory=list)
+    metadata: MetadatoDTO = field(default_factory=lambda: MetadatoDTO("", "", []))  # Corregido
