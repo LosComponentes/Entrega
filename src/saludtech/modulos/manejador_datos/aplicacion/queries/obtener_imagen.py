@@ -14,6 +14,10 @@ class ObtenerImagenHandler(ImagenQueryBaseHandler):
     def handle(self, query: ObtenerImagen) -> QueryResultado:
         repositorio = self.fabrica_repositorio.crear_objeto(RepositorioImagenes.__class__)
         imagen = self.fabrica_imagenes.crear_objeto(repositorio.obtener_por_id(query.id), MapeadorImagen())
+
+        if imagen is None:
+            return '', 404
+
         return QueryResultado(resultado=imagen)
 
 @query.register(ObtenerImagen)
