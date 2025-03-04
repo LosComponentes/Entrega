@@ -35,7 +35,7 @@ class Mapeador(ABC):
     @abstractmethod
     def obtener_tipo(self) -> type:
         ...
-
+        
     @abstractmethod
     def entidad_a_dto(self, entidad: Entidad) -> any:
         ...
