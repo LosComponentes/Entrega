@@ -51,6 +51,11 @@ Se implementaron los microservicios anteriormente descritos basandose en este di
 
 ![Diagrama entrega 4](https://github.com/user-attachments/assets/017645e6-2a90-4b77-b9e9-a8559b14dff1)
 
+* Se definió e implementó una topología híbrida para la administración de datos, combinando ventajas de los modelos centralizados y descentralizados.
+* La elección de la topología se justificó en la necesidad de escalabilidad, cumplimiento normativo (como HIPAA) y eficiencia en la consulta de datos anonimizados.
+* Se implementó un modelo Event Sourcing en la capa de datos para capturar y gestionar cambios de estado de manera histórica y trazable.
+* En al menos cuatro microservicios, se aplicó Event Sourcing, permitiendo mayor flexibilidad en auditoría, reversión de cambios y análisis evolutivo de datos médicos.
+* La arquitectura soporta tanto operaciones CRUD en casos específicos como persistencia basada en eventos para mejorar la integridad de la información.
 
 # Entrega 3
 
