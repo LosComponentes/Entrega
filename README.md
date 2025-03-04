@@ -1,6 +1,4 @@
-# Entrega 3
-
-## Integrantes:
+# Integrantes:
 
 - Maria Alejandra Estrada Garcia 
 - Ana Sofía Padilla Daza 
@@ -8,11 +6,41 @@
 - Eduar Romero
 - Valeria Caro Ramirez
 
+
+# Entrega 4
+
+Para la entrega 4 no vamso a tener enlace de wiki sino todo se va a escribir en este readme. 
+
+## Escenario de prueba 
+
+### Escenario 1: Seguridad - Anonimización de los datos en Data Partneship 
+
+![Template escenario 1 seguridad](https://github.com/user-attachments/assets/33ee9214-4f93-485e-b8ca-e79dc5040c4b)
+
+![Diagrama Escenario 1](https://github.com/user-attachments/assets/17ef3a0f-982a-4262-b782-178a998d06cf)
+[Diagrama Escenario 1](https://github.com/user-attachments/assets/17ef3a0f-982a-4262-b782-178a998d06cf)
+
+### Escenario 2: Adaptarse a requisitos de protección de datos de un nuevo país
+
+![Template Escenario](https://github.com/user-attachments/assets/01ada5a9-b0bc-44df-8dc1-13f877315b13)
+
+![Diagrama Funcional C C](https://github.com/user-attachments/assets/7db70ee0-0a66-45f9-b3d4-06888b2ad281)
+[Diagrama Escenario 2](https://github.com/user-attachments/assets/7db70ee0-0a66-45f9-b3d4-06888b2ad281)
+
+### Escenario 3: Escalabilidad en ejecución de script de eliminación de datos sensibles (anonimización)
+
+![Template Escenario](https://github.com/user-attachments/assets/0cdbe1e1-4de3-4dff-88f7-dbefe4b02d51)
+
+![Diagrama](https://github.com/user-attachments/assets/5b8821ba-f832-4bab-a909-6eb2af279801)
+[Diagrama](https://github.com/user-attachments/assets/5b8821ba-f832-4bab-a909-6eb2af279801)
+
+### Justificación implementación
+
+# Entrega 3
+
 ## Wiki
 
 Este es el [enlace entrega 3](https://github.com/LosComponentes/Entrega-3/wiki/Entrega-3) a la wiki del proyecto donde se encuentra también información de la entrega como son los escenarios de calidad, siguiendo el template presentado en la entrega.
-
-Para la entrega 4 no vamso a tener enlace de wiki sino todo se va a escribir en este readme. 
 
 ## Diagrama
 
