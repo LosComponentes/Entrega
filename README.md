@@ -8,9 +8,11 @@
 - Eduar Romero
 - Valeria Caro Ramirez
 
-## Wki
+## Wiki
 
-Este es el [enlace](https://github.com/LosComponentes/Entrega-3/wiki/Entrega-3) a la wiki del proyecto donde se encuentra también información de la entrega como son los escenarios de calidad, siguiendo el template presentado en la entrega.
+Este es el [enlace entrega 3](https://github.com/LosComponentes/Entrega-3/wiki/Entrega-3) a la wiki del proyecto donde se encuentra también información de la entrega como son los escenarios de calidad, siguiendo el template presentado en la entrega.
+
+Para la entrega 4 no vamso a tener enlace de wiki sino todo se va a escribir en este readme. 
 
 ## Diagrama
 
