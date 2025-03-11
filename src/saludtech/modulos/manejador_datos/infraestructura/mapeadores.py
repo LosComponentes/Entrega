@@ -9,7 +9,7 @@ from saludtech.seedwork.dominio.repositorios import Mapeador
 from saludtech.modulos.manejador_datos.dominio.objetos_valor import Modalidad,RegionAnatomica,Token,TipoCondicion,EntornoClinico,ContextoProcesal,Sintoma,ModalidadImagen,RegionCuerpo
 from saludtech.modulos.manejador_datos.dominio.entidades import Imagen,Condicion,Metadata
 from .dto import Imagen as ImagenDTO
-from .dto import Condicion as CondicionDTO
+# from saludtech.modulos.manejador_datos.aplicacion.dto import ImagenDTO,CondicionDTO, MetadatoDTO, TipoCondicionDTO,ModalidadDTO,RegionAnatomicaDTO,TokenDTO
 
 class MapeadorImagen(Mapeador):
     _FORMATO_FECHA = '%Y-%m-%dT%H:%M:%SZ'
@@ -73,27 +73,51 @@ class MapeadorImagen(Mapeador):
         return Imagen.__class__
 
     def entidad_a_dto(self, entidad: Imagen) -> ImagenDTO:
+        print('infraestructura.mapeadores.entidad_a_dto')
         
-        imagen_dto = ImagenDTO()
-        imagen_dto.fecha_creacion = entidad.fecha_creacion
-        imagen_dto.fecha_actualizacion = entidad.fecha_actualizacion
-        imagen_dto.id = str(entidad.id)
-
-        condiciones_dto = list()
-        
+        condiciones_dto : str = ""
         for condicion in entidad.condiciones:
-            condiciones_dto.extend(self._procesar_condiciones(condicion))
+            condiciones_dto += condicion.tipo_condicion
 
-        imagen_dto.condiciones = condiciones_dto
+        imagen_dto = ImagenDTO(fecha_creacion=entidad.fecha_creacion,
+                            fecha_actualizacion=entidad.fecha_actualizacion,
+                            id=str(entidad.id),
+                            modalidad=entidad.modalidad.tipo,
+                            region_anatomica=entidad.region_anatomica.parteCuerpo,
+                            token=entidad.token.valor,
+                            condiciones=condiciones_dto,
+                            metadata=entidad.metadata)
 
+        # imagen_dto.fecha_creacion = str(entidad.fecha_creacion)
+        # imagen_dto.fecha_actualizacion = str(entidad.fecha_actualizacion)
+        # imagen_dto.id = str(entidad.id)
+        print('datos basicos')
+
+        # imagen_dto.modalidad = entidad.modalidad.tipo
+        # imagen_dto.region_anatomica = entidad.region_anatomica.parteCuerpo
+        # imagen_dto.token = entidad.token.valor
+
+        print('condiciones')
+        # print(entidad.condiciones)
+
+        # print(condiciones_dto)
+        # imagen_dto.condiciones = condiciones_dto
+        print('condiciones ok')
         return imagen_dto
 
     def dto_a_entidad(self, dto: ImagenDTO) -> Imagen:
-        imagen = Imagen(dto.id, dto.fecha_creacion, dto.fecha_actualizacion)
-        imagen.condiciones = list()
+        print('infraestructura.mapeadores.dto_a_entidad')
+        region_anatomica_dto : RegionAnatomicaDTO = RegionAnatomicaDTO(dto.region_anatomica)
+        imagen.region_anatomica = region_anatomica_dto
 
-        condiciones_dto: list[CondicionDTO] = dto.condiciones
+        token_dto: TokenDTO = TokenDTO(dto.token)
+        # imagen = Imagen(id=dto.id,
+        #                 fecha_creacion=dto.fecha_creacion,
+        #                 fecha_actualizacion= dto.fecha_actualizacion,
+        #                 condiciones=self._procesar_condiciones(condiciones_dto),
+        #                 modalidad=ModalidadDTO(dto.modalidad),
+        #                 region_anatomica=RegionAnatomicaDTO(dto.region_anatomica),
+        #                 token=TokenDTO(dto.token))
 
-        imagen.condiciones.extend(self._procesar_condiciones(condiciones_dto))
-        
+        print(imagen)
         return imagen

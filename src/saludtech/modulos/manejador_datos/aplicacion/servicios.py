@@ -39,3 +39,20 @@ class ServicioImagen(Servicio):
             return '', 404
 
         return repositorio.obtener_por_id(id).__dict__
+
+    def obtener_imagenes(self) -> list[ImagenDTO]:
+        repositorio = self.fabrica_repositorio.crear_objeto(RepositorioImagenes.__class__)
+        
+        imagenes : list[imagen] = repositorio.obtener_todos()
+
+        print('obtener_imagenes')
+        print(len(imagenes))
+        print(imagenes)
+
+        if imagenes is None:
+            return '', 404
+
+        if len(imagenes) == 0:
+            return '', 200
+
+        return imagenes

@@ -1,9 +1,22 @@
 from dataclasses import dataclass, field
 from saludtech.seedwork.aplicacion.dto import DTO
+import uuid
 
 @dataclass(frozen=True)
 class TipoDTO(DTO):
     tipo: str
+
+@dataclass(frozen=True)
+class ModalidadDTO(DTO):
+    tipo: str
+
+@dataclass(frozen=True)
+class TokenDTO(DTO):
+    valor: str
+
+@dataclass(frozen=True)
+class RegionAnatomicaDTO(DTO):
+    parteCuerpo: str
 
 @dataclass(frozen=True)
 class TipoCondicionDTO(DTO):

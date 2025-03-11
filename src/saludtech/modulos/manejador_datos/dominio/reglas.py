@@ -12,11 +12,13 @@ class ImagenDebeTenerToken(ReglaNegocio):
 
     token: Token
 
-    def __init__(self, token_unico, mensaje="Toda imagen debe tener un token único válido."):
+    def __init__(self, token, mensaje="Toda imagen debe tener un token único válido."):
         super().__init__(mensaje)
-        self.token_unico = token
+        self.token = token
+        print(self.token)
 
     def es_valido(self) -> bool:
+        print(self.token.valor)
         return len(self.token.valor) > 0
 
 

@@ -20,7 +20,7 @@ class RepositorioImagenesSQLite(RepositorioImagenes):
         self._fabrica_imagenes: FabricaImagenes = FabricaImagenes()
 
     @property
-    def fabrica_iamagenes(self):
+    def fabrica_imagenes(self):
         return self._fabrica_imagenes
 
     def obtener_por_id(self, id: UUID) -> Imagen:
@@ -31,14 +31,30 @@ class RepositorioImagenesSQLite(RepositorioImagenes):
         if imagen_dto is None:
             return '', 404
 
-        return self.fabrica_iamagenes.crear_objeto(imagen_dto, MapeadorImagen())
+        return self.fabrica_imagenes.crear_objeto(imagen_dto, MapeadorImagen())
 
     def obtener_todos(self) -> list[Imagen]:
-        # TODO
-        raise NotImplementedError
+        imagenes_dto = db.session.query(ImagenDTO).all()
+        
+        print('obtener_todos')
+        print(len(imagenes_dto))
+        print('')
+
+        if imagenes_dto is None:
+            return '', 404
+
+        x = len(imagenes_dto)  
+
+        if x <= 0:
+            return '', 404
+
+        return self.fabrica_imagenes.crear_objeto(imagenes_dto, MapeadorImagen())
 
     def agregar(self, imagen: Imagen):
-        imagen_dto = self.fabrica_iamagenes.crear_objeto(imagen, MapeadorImagen())
+        print('infraestructura.repositorios.agregar')
+        imagen_dto = self.fabrica_imagenes.crear_objeto(imagen, MapeadorImagen())
+        print('imagen_dto')
+        print(imagen_dto)
         db.session.add(imagen_dto)
         db.session.commit()
 

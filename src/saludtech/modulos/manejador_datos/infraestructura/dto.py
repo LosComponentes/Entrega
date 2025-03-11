@@ -40,6 +40,16 @@ class Condicion(db.Model):
     id = db.Column(db.String(40), primary_key=True, default=lambda: str(uuid.uuid4()))
     tipo_condicion = db.Column(db.String(100), nullable=False)
 
+class Modalidad(db.Model):
+    __tablename__ = "modalidades"
+    id = db.Column(db.String(40), primary_key=True, default=lambda: str(uuid.uuid4()))
+    tipo = db.Column(db.String(100), nullable=False)
+
+class RegionCuerpo(db.Model):
+    __tablename__ = "regiones_cuerpo"
+    id = db.Column(db.String(40), primary_key=True, default=lambda: str(uuid.uuid4()))
+    parteCuerpo = db.Column(db.String(100), nullable=False)
+
 class Metadato(db.Model):
     __tablename__ = "metadatos"
     id = db.Column(db.String(40), primary_key=True, default=lambda: str(uuid.uuid4()))

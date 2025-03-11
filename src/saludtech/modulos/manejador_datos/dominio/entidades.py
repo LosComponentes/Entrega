@@ -19,12 +19,12 @@ class Metadata(Entidad):
 class Imagen(AgregacionRaiz):
     modalidad: ov.Modalidad = field(default_factory=ov.Modalidad)
     region_anatomica: ov.RegionAnatomica = field(default_factory=ov.RegionAnatomica)
-    token: ov.TokenUnico = field(default_factory=ov.Token)
+    token: ov.Token = field(default_factory=ov.Token)
     condiciones: list[Condicion] = field(default_factory=list[Condicion])
     metadata: Metadata = field(default_factory=Metadata)
 
     def __str__(self) -> str:
-        return f"Imagen {self.token_unico}" 
+        return f"Imagen {self.token}" 
 
     def crear_imagen(self, imagen: Imagen) -> dict:  
         self.token = imagen.token
