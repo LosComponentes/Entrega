@@ -17,13 +17,13 @@ def agregar_imagen():
         imagen_dict = request.json
         map_imagen = MapeadorImagenDTOJson()
         imagen_dto = map_imagen.externo_a_dto(imagen_dict)
-        print('externo_a_dto')
-        print(imagen_dto)
+        # print('externo_a_dto')
+        # print(imagen_dto)
         sr = ServicioImagen()
-        print('ServicioImagen')
+        # print('ServicioImagen')
         dto_final = sr.crear_imagen(imagen_dto)
-        print('imagen creada')
-        print(dto_final)
+        # print('imagen creada')
+        # print(dto_final)
         return map_imagen.dto_a_externo(dto_final)
     except Exception as e:
         return Response(json.dumps(dict(error=str(e))),status=400,mimetype='application/json')

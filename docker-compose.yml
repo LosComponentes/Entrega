@@ -155,3 +155,19 @@ services:
       - pulsar
     ports:
       - "5678:5678"
+    
+  bff:
+    container_name: bff
+    hostname: bff
+    image: aeroalpes/bff 
+    profiles: ["aeroalpes", "bff"]
+    depends_on:
+      - aeroalpes
+      - broker
+    environment:
+      - AEROALPES_ADDRESS=aeroalpes
+      - BROKER_HOST=broker
+    networks:
+      - pulsar
+    ports:
+      - "8003:8003"
