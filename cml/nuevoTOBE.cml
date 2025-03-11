@@ -1,0 +1,86 @@
+Domain AdquisicionTransformacionEntrenamientoImagenes {
+    //Originalmente se pensó en tener dos dominios. Sin embargo, el entrenamiento de modelos y extracción de features depende completamente de la extracción y procesamiento de los datos. 
+  domainVisionStatement = " Adquisición, procesamiento, transformación y disposición de imágenes médicas y metadatos listos para ser usadas en modelos de aprendizaje y extracción de features."
+
+  Subdomain Partnership {
+    type = CORE_DOMAIN
+    domainVisionStatement = "Adquisición, procesamiento, transformación y disposición de imágenes médicas y metadatos listos para ser usadas en modelos de aprendizaje y extracción de features."
+  }
+
+  Subdomain STA {
+    type = CORE_DOMAIN
+    domainVisionStatement = "Disposición de imagenes para clientes STA."
+  }
+  Subdomain EntrenamientoExtraccionFeatures {
+    type = CORE_DOMAIN
+    domainVisionStatement = "Utiliza modelos de IA para extraer características estructuradas de imágenes médicas anonimizadas."
+  }
+
+  Subdomain LimpiezaYCanonizacion {
+    type = CORE_DOMAIN
+    domainVisionStatement = "Se encarga de anonimizar las imagenes extraidas."
+  }
+
+  Subdomain AtencionCliente {
+    type = SUPPORTING_DOMAIN
+    domainVisionStatement = "Facilita la administración de cuentas para desarrolladores, laboratorios y empresas de IA. Proporciona planes de acceso (Standard, Pro, Enterprise)."
+  }
+
+  Subdomain Facturacion{
+    type= GENERIC_SUBDOMAIN
+    domainVisionStatement = "Administra los planes de suscripción y pagos según el nivel de acceso solicitado."
+  }
+
+  Subdomain SeguridadPorPais {
+    type CORE_DOMAIN
+    domainVisionStatement = "Valida y verifica la normatividad del país de donde provienen los datos. Es aquí donde se asegura de la anonimización de los datos según las reglas de cada país, así como sus especificaciones en cuanto a dónde y cómo guardar la información."
+  }
+
+}
+
+
+
+BoundedContext Parnership implements Partnership {
+  domainVisionStatement = "Gestiona la adquisicioón e importación de imágenes médicas y sus metadatos de las diversas fuentes (Google Drive, Dropbox, data centers de centros de salud)"
+}
+
+BoundedContext STA implements STA {
+  domainVisionStatement = "Realiza la transformación y anonimización, eliminando la información sensible de manera automatizada, conforme a normativas como HIPAA y GDPR"
+}
+
+BoundedContext ContextoSeguridadPais implements SeguridadPorPais {
+  domainVisionStatement = "Garantiza el cumplimiento de la normativa y seguridad de los datos según las regulaciones de cada país, asegurando que el almacenamiento y procesamiento se realicen dentro del territorio de cada uno"
+}
+
+BoundedContext ContextoEntrenamientoExtraccion implements EntrenamientoExtraccionFeatures {
+  domainVisionStatement = "Desarrolla y entrena con modelos IA la extracción de características médicas de imágenes anonimizadas"
+}
+
+BoundedContext ContextoLimpiezaCanonización implements LimpiezaYCanonizacion{
+ domainVisionStatement = "Presenta la consulta y entrega de imágenes médicas y sus metadatos a través de plataforma (UI)"
+}
+
+BoundedContext ContextoAtencionCliente implements Facturacion, AtencionCliente{
+ domainVisionStatement = "Administra la gestión de suscripciones, acceso de imágenes y pagos según el nivel"
+}
+
+ContextMap SaludTechAlpesNewToBe {
+	state = TO_BE
+
+  contains ContextoAtencionCliente
+  contains ContextoLimpiezaCanonización
+  contains ContextoEntrenamientoExtraccion
+  contains STA
+  contains Partnership
+  contains ContextoSeguridadPais
+	
+
+	Partnership [U, OHS] -> [D] ContextoSeguridadPais
+  ContextoSeguridadPais [U, OHS] -> [D] ContextoLimpiezaCanonización
+  ContextoEntrenamientoExtraccion [D] <- [U, OHS] ContextoLimpiezaCanonización
+  ContextoLimpiezaCanonización [U, OHS] -> [D] STA
+  STA [U, OHS] -> [D, ACL] ContextoAtencionCliente
+  ContextoEntrenamientoExtraccion [U, OHS] -> [D, ACL] ContextoAtencionCliente
+  ContextoEntrenamientoExtraccion [U, OHS] -> [D] STA
+
+} 
