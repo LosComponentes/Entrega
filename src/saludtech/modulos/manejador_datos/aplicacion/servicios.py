@@ -21,13 +21,13 @@ class ServicioImagen(Servicio):
         return self._fabrica_imagenes
 
     def crear_imagen(self, imagen_dto: ImagenDTO) -> ImagenDTO:
-        print('crear_imagen')
+        # print('crear_imagen')
         imagen: Imagen = self.fabrica_imagenes.crear_objeto(imagen_dto, MapeadorImagen())
-        print('fabrica_imagenes.crear_objeto')
+        # print('fabrica_imagenes.crear_objeto')
         repositorio = self.fabrica_repositorio.crear_objeto(RepositorioImagenes.__class__)
-        print('fabrica_repositorio.crear_objeto')
+        # print('fabrica_repositorio.crear_objeto')
         repositorio.agregar(imagen)
-        print('repositorio.agregar')
+        # print('repositorio.agregar')
         return self.fabrica_imagenes.crear_objeto(imagen, MapeadorImagen())
 
     def obtener_imagen_por_id(self, id) -> ImagenDTO:
@@ -45,9 +45,9 @@ class ServicioImagen(Servicio):
         
         imagenes : list[imagen] = repositorio.obtener_todos()
 
-        print('obtener_imagenes')
-        print(len(imagenes))
-        print(imagenes)
+        # print('obtener_imagenes')
+        # print(len(imagenes))
+        # print(imagenes)
 
         if imagenes is None:
             return '', 404
@@ -56,3 +56,8 @@ class ServicioImagen(Servicio):
             return '', 200
 
         return imagenes
+
+    def borrar_imagen(self, id):
+        # print('borrar_imagen')
+        repositorio = self.fabrica_repositorio.crear_objeto(RepositorioImagenes.__class__)
+        return repositorio.eliminar(id)

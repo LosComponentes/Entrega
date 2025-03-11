@@ -17,25 +17,25 @@ from dataclasses import dataclass
 @dataclass
 class _FabricaImagen(Fabrica):
     def crear_objeto(self, obj: any, mapeador: Mapeador) -> any:
-        print('_FabricaImagen')
+        # print('_FabricaImagen')
         if isinstance(obj, Entidad):
-            print('isinstance')
+            # print('isinstance')
             return mapeador.entidad_a_dto(obj)
         else:
-            print('Not isinstance')
+            # print('Not isinstance')
             imagen: Imagen = mapeador.dto_a_entidad(obj)
-            print('dto_a_entidad finalizado')
+            # print('dto_a_entidad finalizado')
             self.validar_regla(ImagenDebeTenerToken(imagen.token))
-            print('ImagenDebeTenerToken')
+            # print('ImagenDebeTenerToken')
             self.validar_regla(ModalidadValida(imagen.modalidad))
-            print('ModalidadValida')
+            # print('ModalidadValida')
             return imagen
 
 
 @dataclass
 class FabricaImagenes(Fabrica):
     def crear_objeto(self, obj: any, mapeador: Mapeador) -> any:
-        print('crear_objeto')
+        # print('crear_objeto')
         if mapeador.obtener_tipo() == Imagen.__class__:
             fabrica_imagen = _FabricaImagen()
             return fabrica_imagen.crear_objeto(obj, mapeador)

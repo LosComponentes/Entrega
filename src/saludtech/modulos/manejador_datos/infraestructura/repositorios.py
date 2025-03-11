@@ -26,7 +26,7 @@ class RepositorioImagenesSQLite(RepositorioImagenes):
     def obtener_por_id(self, id: UUID) -> Imagen:
         imagen_dto = db.session.query(ImagenDTO).filter_by(id=str(id)).first()
 
-        print(imagen_dto)
+        # print(imagen_dto)
         
         if imagen_dto is None:
             return '', 404
@@ -51,10 +51,10 @@ class RepositorioImagenesSQLite(RepositorioImagenes):
         return self.fabrica_imagenes.crear_objeto(imagenes_dto, MapeadorImagen())
 
     def agregar(self, imagen: Imagen):
-        print('infraestructura.repositorios.agregar')
+        # print('infraestructura.repositorios.agregar')
         imagen_dto = self.fabrica_imagenes.crear_objeto(imagen, MapeadorImagen())
-        print('imagen_dto')
-        print(imagen_dto)
+        # print('imagen_dto')
+        # print(imagen_dto)
         db.session.add(imagen_dto)
         db.session.commit()
 
@@ -62,6 +62,13 @@ class RepositorioImagenesSQLite(RepositorioImagenes):
         # TODO
         raise NotImplementedError
 
-    def eliminar(self, reserva_id: UUID):
-        # TODO
-        raise NotImplementedError
+    def eliminar(self, imagen_id: UUID):
+        print('eliminar')
+        imagen_dto = db.session.query(ImagenDTO).filter_by(id=str(id)).first()
+        
+        if imagen_dto is None:
+            return '', 404
+
+        session.delete(imagen_dto)
+        session.commit()
+        return '', 204

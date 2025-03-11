@@ -8,14 +8,14 @@ import uuid
 
 class MapeadorImagenDTOJson(AppMap):
     def _procesar_imagen(self, imagen: dict) -> ImagenDTO:
-        print('_procesar_imagen')
+        # print('_procesar_imagen')
         
         # Procesar condiciones correctamente
         condiciones_dto = [
             TipoCondicionDTO(tipo_condicion=condicion.get("tipo_condicion", ""))
             for condicion in imagen.get("condiciones", [])
         ]
-        print('condiciones_dto')
+        # print('condiciones_dto')
 
         metadato = imagen.get("metadata",MetadatoDTO("", "", []))
 
@@ -24,14 +24,14 @@ class MapeadorImagenDTOJson(AppMap):
             TipoCondicionDTO(tipo_condicion=condicion.get("tipo_condicion", ""))
             for condicion in imagen.get("sintomas", [])
         ]
-        print('sintomas_dto')
+        # print('sintomas_dto')
 
         metadata_dto = MetadatoDTO (entorno_clinico=metadato.get("entorno_clinico",""),
                                   contexto_procesal=metadato.get("contexto_procesal",""),
                                   sintomas=sintomas_dto) 
             
 
-        print('metadata_dto')
+        # print('metadata_dto')
 
         # Se inicializa el objeto DTO antes de asignar valores
         imagen_dto = ImagenDTO(
@@ -54,8 +54,8 @@ class MapeadorImagenDTOJson(AppMap):
         return imagen_dto
 
     def dto_a_externo(self, dto: ImagenDTO) -> dict:
-        print('dto_a_externo')
-        print(dto)
+        # print('dto_a_externo')
+        # print(dto)
         try:
             return dto.__dict__
         except:
@@ -68,14 +68,14 @@ class MapeadorImagen(RepMap):
         return Imagen.__class__
 
     def _procesar_imagen(self, imagen_dto: ImagenDTO) -> Imagen:
-        print('_procesar_imagen')
+        # print('_procesar_imagen')
         modalidad_dto : ModalidadDTO = ModalidadDTO(imagen_dto.modalidad)
         region_dto : RegionAnatomicaDTO = RegionAnatomicaDTO(imagen_dto.region_anatomica)
 
         condiciones : list[TipoCondicionDTO] = list()
         for condicion in imagen_dto.condiciones:
-            print(condicion)
-            print(condicion.tipo_condicion)
+            # print(condicion)
+            # print(condicion.tipo_condicion)
             tipo_condicion : TipoCondicionDTO = TipoCondicionDTO(condicion.tipo_condicion)
             condiciones.append(tipo_condicion)
 
@@ -94,11 +94,11 @@ class MapeadorImagen(RepMap):
                                 condiciones=condiciones,
                                 metadata=metadata_dto,
                                 token=token_dto)
-        print('imagen procesada')
+        # print('imagen procesada')
         return imagen
 
     def entidad_a_dto(self, entidad: Imagen) -> ImagenDTO:
-        print('aplicacion.mapeadores.entidad_a_dto')
+        # print('aplicacion.mapeadores.entidad_a_dto')
         fecha_creacion = entidad.fecha_creacion.strftime(self._FORMATO_FECHA)
         fecha_actualizacion = entidad.fecha_actualizacion.strftime(self._FORMATO_FECHA)
         _id = str(entidad.id)
@@ -108,12 +108,12 @@ class MapeadorImagen(RepMap):
         metadata= Metadata(entorno_clinico=entidad.metadata.entorno_clinico,
                             contexto_procesal= entidad.metadata.contexto_procesal,
                             sintomas=[] )
-        print('aplicacion.mapeadores.entidad_a_dto.ImagenDTO')
+        # print('aplicacion.mapeadores.entidad_a_dto.ImagenDTO')
         return ImagenDTO(_id,fecha_creacion, fecha_actualizacion, modalidad,region_anatomica,token,list(),metadata)
 
     def dto_a_entidad(self, dto: ImagenDTO) -> Imagen:
-        print('dto_a_entidad')
+        # print('dto_a_entidad')
         imagen : Imagen = self._procesar_imagen(dto)
-        print('imagen procesada2')
+        # print('imagen procesada2')
         return imagen
 

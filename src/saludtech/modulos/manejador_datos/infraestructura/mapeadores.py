@@ -73,7 +73,7 @@ class MapeadorImagen(Mapeador):
         return Imagen.__class__
 
     def entidad_a_dto(self, entidad: Imagen) -> ImagenDTO:
-        print('infraestructura.mapeadores.entidad_a_dto')
+        # print('infraestructura.mapeadores.entidad_a_dto')
         
         condiciones_dto : str = ""
         for condicion in entidad.condiciones:
@@ -91,22 +91,22 @@ class MapeadorImagen(Mapeador):
         # imagen_dto.fecha_creacion = str(entidad.fecha_creacion)
         # imagen_dto.fecha_actualizacion = str(entidad.fecha_actualizacion)
         # imagen_dto.id = str(entidad.id)
-        print('datos basicos')
+        # print('datos basicos')
 
         # imagen_dto.modalidad = entidad.modalidad.tipo
         # imagen_dto.region_anatomica = entidad.region_anatomica.parteCuerpo
         # imagen_dto.token = entidad.token.valor
 
-        print('condiciones')
-        # print(entidad.condiciones)
+        # print('condiciones')
+        # # print(entidad.condiciones)
 
-        # print(condiciones_dto)
+        # # print(condiciones_dto)
         # imagen_dto.condiciones = condiciones_dto
-        print('condiciones ok')
+        # print('condiciones ok')
         return imagen_dto
 
     def dto_a_entidad(self, dto: ImagenDTO) -> Imagen:
-        print('infraestructura.mapeadores.dto_a_entidad')
+        # print('infraestructura.mapeadores.dto_a_entidad')
         # region_anatomica_dto : RegionAnatomicaDTO = RegionAnatomicaDTO(dto.region_anatomica)
         # imagen.region_anatomica = region_anatomica_dto
 
@@ -123,5 +123,5 @@ class MapeadorImagen(Mapeador):
                                             "",
                                             []))
 
-        print(imagen)
+        # print(imagen)
         return imagen
