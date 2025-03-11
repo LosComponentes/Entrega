@@ -9,7 +9,7 @@ from saludtech.seedwork.dominio.repositorios import Mapeador
 from saludtech.modulos.manejador_datos.dominio.objetos_valor import Modalidad,RegionAnatomica,Token,TipoCondicion,EntornoClinico,ContextoProcesal,Sintoma,ModalidadImagen,RegionCuerpo
 from saludtech.modulos.manejador_datos.dominio.entidades import Imagen,Condicion,Metadata
 from .dto import Imagen as ImagenDTO
-# from saludtech.modulos.manejador_datos.aplicacion.dto import ImagenDTO,CondicionDTO, MetadatoDTO, TipoCondicionDTO,ModalidadDTO,RegionAnatomicaDTO,TokenDTO
+from saludtech.modulos.manejador_datos.aplicacion.dto import CondicionDTO, MetadatoDTO, TipoCondicionDTO,ModalidadDTO,RegionAnatomicaDTO,TokenDTO
 
 class MapeadorImagen(Mapeador):
     _FORMATO_FECHA = '%Y-%m-%dT%H:%M:%SZ'
@@ -107,17 +107,21 @@ class MapeadorImagen(Mapeador):
 
     def dto_a_entidad(self, dto: ImagenDTO) -> Imagen:
         print('infraestructura.mapeadores.dto_a_entidad')
-        region_anatomica_dto : RegionAnatomicaDTO = RegionAnatomicaDTO(dto.region_anatomica)
-        imagen.region_anatomica = region_anatomica_dto
+        # region_anatomica_dto : RegionAnatomicaDTO = RegionAnatomicaDTO(dto.region_anatomica)
+        # imagen.region_anatomica = region_anatomica_dto
 
-        token_dto: TokenDTO = TokenDTO(dto.token)
-        # imagen = Imagen(id=dto.id,
-        #                 fecha_creacion=dto.fecha_creacion,
-        #                 fecha_actualizacion= dto.fecha_actualizacion,
-        #                 condiciones=self._procesar_condiciones(condiciones_dto),
-        #                 modalidad=ModalidadDTO(dto.modalidad),
-        #                 region_anatomica=RegionAnatomicaDTO(dto.region_anatomica),
-        #                 token=TokenDTO(dto.token))
+        # token_dto: TokenDTO = TokenDTO(dto.token)
+        condiciones_dto = list()
+        imagen = Imagen(id=dto.id,
+                        fecha_creacion=dto.fecha_creacion,
+                        fecha_actualizacion= dto.fecha_actualizacion,
+                        condiciones=self._procesar_condiciones(condiciones_dto),
+                        modalidad=ModalidadDTO(dto.modalidad),
+                        region_anatomica=RegionAnatomicaDTO(dto.region_anatomica),
+                        token=TokenDTO(dto.token),
+                        metadata=MetadatoDTO("",
+                                            "",
+                                            []))
 
         print(imagen)
         return imagen

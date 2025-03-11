@@ -32,9 +32,12 @@ def agregar_imagen():
 @bp.route('/imagen/<id>', methods=('GET',))
 def dar_imagen(id=None):
     sr = ServicioImagen()
+    map_imagen = MapeadorImagenDTOJson()
     if id:
         print('id' + id)
         dto_final = sr.obtener_imagen_por_id(id)
+        print('dto_final')
+        print(dto_final)
         return map_imagen.dto_a_externo(dto_final)
         # return [{'message': 'GET!'}]
     else:

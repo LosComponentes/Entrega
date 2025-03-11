@@ -54,7 +54,12 @@ class MapeadorImagenDTOJson(AppMap):
         return imagen_dto
 
     def dto_a_externo(self, dto: ImagenDTO) -> dict:
-        return dto.__dict__
+        print('dto_a_externo')
+        print(dto)
+        try:
+            return dto.__dict__
+        except:
+            return dto
 
 class MapeadorImagen(RepMap):
     _FORMATO_FECHA = "%Y-%m-%dT%H:%M:%SZ"
