@@ -1,15 +1,18 @@
 # Integrantes:
 
-- Maria Alejandra Estrada Garcia 
 - Ana Sofía Padilla Daza 
 - Ever Martínez
 - Eduar Romero
 - Valeria Caro Ramirez
 
+# Entrega 5
+
+Para esta entrega el link a la wiki es: https://github.com/LosComponentes/Entrega/wiki/Entrega-5
+
 
 # Entrega 4
 
-Para la entrega 4 no vamso a tener enlace de wiki sino todo se va a escribir en este readme. 
+Para la entrega 4 no vamos a tener enlace de wiki sino todo se va a escribir en este readme. 
 
 ## Video
 
